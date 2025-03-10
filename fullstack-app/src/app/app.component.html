@@ -1,0 +1,49 @@
+<div class="app-container">
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo-container">
+        <mat-icon class="logo-icon">play_circle_filled</mat-icon>
+        <h1>Youtube Video Player </h1>
+      </div>
+      <div class="header-actions">
+        <mat-icon matBadge="{{bookmarkCount}}" matBadgeColor="accent" class="bookmark-badge">bookmarks</mat-icon>
+        <button mat-button color="accent" class="theme-toggle" (click)="themeService.toggleDarkMode()">
+          <mat-icon>{{ themeService.isDarkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <div class="main-content">
+    <div class="video-section">
+      <app-searchbar></app-searchbar>
+      <app-video-view></app-video-view>
+      
+      <div class="video-actions">
+        <app-bookmarks></app-bookmarks>
+      </div>
+      
+      
+    </div>
+    
+    <div class="sidebar">
+      <app-history></app-history>
+      
+     
+    </div>
+  </div>
+  
+  <footer class="app-footer">
+    <p>Made with Angular 17 </p>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </footer>
+
+  <div class="offline-indicator" *ngIf="!isOnline">
+    <mat-icon>cloud_off</mat-icon>
+    <span>You are offline. Changes will be synced when you reconnect.</span>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>History</mat-card-title>
+    @if (historyItems.length > 0) {
+      <button mat-icon-button color="warn" (click)="clearHistory()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    }
+  </mat-card-header>
+  
+  <mat-card-content>
+    <mat-list>
+      @for (item of historyItems; track item.id) {
+        <mat-list-item (click)="loadVideo(item)" class="history-item">
+          <mat-icon matListItemIcon>history</mat-icon>
+          <div matListItemTitle>Video {{ item.id || 'Unknown' }}</div>
+          <div matListItemLine>{{ item.timestamp ? formatDate(item.timestamp) : 'No date' }}</div>
+        </mat-list-item>
+      }
+      @empty {
+        <mat-list-item>
+          <div matListItemTitle>No history items found</div>
+        </mat-list-item>
+      }
+    </mat-list>
+  </mat-card-content>
+</mat-card>
